@@ -1,0 +1,38 @@
+:root{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.coinname, .coinsymbol, .coinprice, .coinvolume, .marketcap, .coinfiller, .sparklines, .heart, .calculator{
+    width:100px;
+}
+
+.coinimg{
+    height: 50px;
+    width:50px;
+}
+
+.coincontainer, .attributescontainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.coinattributes, .coin{
+    padding:10px;
+    margin:10px;
+    width:80vw;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr 1.75fr 1.75fr 1.75fr 1fr 1fr;
+    border-bottom:1px solid lightblue;
+}
+
+.circularloading{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height:100vh;
+}
+  
