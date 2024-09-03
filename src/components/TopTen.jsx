@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import FavItem from './favItem';
 
 const TopTen = () => {
     const [coins,setCoins] = useState([])
@@ -79,11 +80,11 @@ const TopTen = () => {
         <p className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</p>
         <p className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</p>
         <div className="sparklines">
-          <Sparklines data={sparkline.map(Number)}>
+          <Sparklines data={coin.sparkline.map(Number)}>
             <SparklinesLine color="blue" />
           </Sparklines>
         </div>
-        <FavoriteBorderIcon className="heart" />
+        <FavItem className="heart" coin = {coin}/>
         <CalculateIcon className="calculator" />
       </div>
     </div>
@@ -93,4 +94,4 @@ const TopTen = () => {
     )
 }
 
-export default TopTen
+export default TopTen;
