@@ -1,5 +1,5 @@
 import React from 'react';
-import './aboutus.css';
+import './about.css';
 
 const AboutUs = () => {
   const teamMembers = [
@@ -14,7 +14,7 @@ const AboutUs = () => {
       image: '',
     },
     {
-      name: 'Junus Osmanakic',
+      name: 'Junus Osmanlic',
       role: 'Frontend Developer',
       image: '',
     },

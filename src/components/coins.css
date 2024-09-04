@@ -20,6 +20,10 @@
     justify-content: center;
 }
 
+.coincontainer{
+    height: 100px;
+}
+
 .coinattributes, .coin{
     padding:10px;
     margin:10px;
@@ -38,19 +42,95 @@
 
 .heart{
     cursor: pointer;
+    color: red;
 }
 
-.search-bar {
+.searchBar {
+    display: flex;
     width: 300px;
-    height: 30px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+    border-radius: 10px;
     margin: 10px;
-  }
+    background-color: rgb(55,65,81);
+    color: rgb(145,154,167);
+}
+
+.searchBar input{
+    width: 100%;
+    background-color: rgb(55,65,81);
+    border: none;
+    color: white;
+}
+
+.searchBar input:focus{
+    outline: none;
+}
+
+.searchContainer{
+    display: flex;
+    justify-content: center;
+}
 
 .active {
     background-color: #ddd;
     color: #333;
+}
+
+.sparklines{
+    width: 10em;
+}
+
+.calculator{
+    cursor: pointer;
+    color: rgb(24,118,210);
+}
+
+.pagination{
+    width: 100vw;
+    display: flex;
+    justify-content: center;;
+}
+
+.active{
+    font-size: 1.65em;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(228, 227, 227);
+    border-radius: 5px;
+    border-color: rgba(166, 166, 166, 0.767);
+}
+
+.near{
+    font-size: 1.35em;
+    background-color: transparent;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-color: rgba(166, 166, 166, 0.767);
+}
+
+.blank{
+    background-color: transparent;
+    border: none;
+    font-size: 2.4em;
+}
+
+.near:hover {
+    background-color: rgb(228, 227, 227);
+    transition: 0.15s;
+}
+
+.active:hover{
+    background-color: rgb(194, 194, 194);
+    transition: 0.15s;
+}
+
+.higherContainer{
+    height: 1200px;
 }
