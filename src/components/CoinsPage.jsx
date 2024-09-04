@@ -6,11 +6,15 @@ import CircularProgress from '@mui/material/CircularProgress';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import FavItem from './favItem';
 
 const CoinsPage = () => {
     const [coins,setCoins] = useState([])
     const [sparkline, setSparkline] = useState([])
     const [loading, isLoading] = useState(true)
+    const [search, setSearch] = useState('');
+    const [page, setPage] = useState(1);
+    const [allCoins, setAllCoins] = useState([]);
 
     const options = {
         method: 'GET',
@@ -32,8 +36,12 @@ const CoinsPage = () => {
       useEffect (() => {
         const fetchData = async () => {
             try{
-                const response = await axios.request(options)
-                setCoins(response.data.data.coins)
+                const response = await axios.request(options);
+                const startIndex = (page - 1) * 12;
+                const endIndex = startIndex + 12;
+                const currentCoins = response.data.data.coins.slice(startIndex, endIndex);
+                setAllCoins(response.data.data.coins);
+                setCoins(currentCoins);
                 setSparkline(response.data.data.coins[0].sparkline)
                 isLoading(false)
             }
@@ -42,7 +50,17 @@ const CoinsPage = () => {
             }
         }
         fetchData()
-      }, [])
+      }, [page])
+
+      const filteredCoins = allCoins.filter((coin) => {
+        return coin.name.toLowerCase().includes(search.toLowerCase()
+      )});
+
+      const totalPages = Math.ceil(filteredCoins.length / 12);
+
+      const pagFilteredCoins = filteredCoins.slice((page - 1) * 12, page * 12);
+
+
 
       if (loading){
         return (
@@ -53,8 +71,11 @@ const CoinsPage = () => {
             </>
         )
     }
+    
+    
   return (
     <>
+    <input type='text' value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search for a coin..." className='search-bar'></input>
     <div className="attributescontainer">
   <div className="coinattributes">
     <p className="coinrank">Rank</p>
@@ -68,7 +89,8 @@ const CoinsPage = () => {
     <p className="coinfiller"></p>
     <p className="coinfiller"></p>
   </div>
-  {coins.map((coin) => (
+  { search === '' ? <div>
+   {coins.map((coin) => (
     <div className="coincontainer">
       <div className="coin" key={coin.uuid}>
         <p className="coinrank">{coin.rank}</p>
@@ -79,18 +101,71 @@ const CoinsPage = () => {
         <p className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</p>
         <p className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</p>
         <div className="sparklines">
-          <Sparklines data={sparkline.map(Number)}>
+          <Sparklines data={coin.sparkline.map(Number)}>
             <SparklinesLine color="blue" />
           </Sparklines>
         </div>
-        <FavoriteBorderIcon className="heart" />
+        <FavItem className="heart" coin = {coin}/>
         <CalculateIcon className="calculator" />
       </div>
     </div>
-  ))}
-</div>
-    </>
-    )
-}
+  ))} </div> : <div>
+   {pagFilteredCoins.map((coin) => (
+    <div className="coincontainer">
+      <div className="coin" key={coin.uuid}>
+        <p className="coinrank">{coin.rank}</p>
+        <img className="coinimg" src={coin.iconUrl} alt="" />
+        <p className="coinname">{coin.name}</p>
+        <p className="coinsymbol">{coin.symbol}</p>
+        <p className="coinprice">${new Intl.NumberFormat().format(coin.price)}</p>
+        <p className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</p>
+        <p className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</p>
+        <div className="sparklines">
+          <Sparklines data={coin.sparkline.map(Number)}>
+            <SparklinesLine color="blue" />
+          </Sparklines>
+        </div>
+        <FavItem className="heart" coin = {coin}/>
+        <CalculateIcon className="calculator" />
+      </div>
+    </div>
+  ))} </div>}
+  </div>
 
-export default CoinsPage
+  <div className='pagination'>
+  <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
+  {Array.from({ length: totalPages }, (_, i) => {
+          if (i === 0 || i === totalPages - 1) {
+            return (
+              <button
+                key={i}
+                onClick={() => setPage(i + 1)}
+                className={page === i + 1 ? 'active' : ''}
+              >
+                {i + 1}
+              </button>
+            );
+          } else if (i >= page - 2 && i <= page) {
+            return (
+              <button
+                key={i}
+                onClick={() => setPage(i + 1)}
+                className={page === i + 1 ? 'active' : ''}
+              >
+                {i + 1}
+              </button>
+            );
+          } else if (i === page - 3 || i === page + 1) {
+            return (
+              <button key={i}>...</button>
+            );
+          } else {
+            return null;
+          }
+        })}
+   <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>Next</button>
+  </div>
+    </>
+  )
+  }
+export default CoinsPage;

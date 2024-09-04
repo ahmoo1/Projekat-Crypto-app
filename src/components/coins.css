@@ -35,4 +35,22 @@
     align-items:center;
     height:100vh;
 }
-  
+
+.heart{
+    cursor: pointer;
+}
+
+.search-bar {
+    width: 300px;
+    height: 30px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+.active {
+    background-color: #ddd;
+    color: #333;
+}
