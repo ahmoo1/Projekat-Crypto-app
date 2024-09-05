@@ -56,6 +56,7 @@ const TopTen = () => {
     }
   return (
     <>
+    <h1 className="top10title">Top 10&nbsp;<span>List</span></h1>
     <div className="attributescontainer">
   <div className="coinattributes">
     <p className="coinrank">Rank</p>

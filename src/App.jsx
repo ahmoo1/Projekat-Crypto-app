@@ -8,9 +8,9 @@ import AboutUs from './components/aboutus/aboutus'
 const App = () => {
   return (
     <>
-      {/* <TopTen /> */}
-      <CoinsPage />
-      <FavList />
+      <TopTen />
+      {/*<CoinsPage /> */}
+      {/* <FavList /> */}
       {/* <AboutUs /> */}
     </>
   )
