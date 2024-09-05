@@ -2,9 +2,10 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    overflow-x:hidden;
 }
 
-.coinname, .coinsymbol, .coinprice, .coinvolume, .marketcap, .coinfiller, .sparklines, .heart, .calculator{
+.coinname, .coinrank, .coinsymbol, .coinprice, .coinvolume, .marketcap, .coinfiller, .sparklines, .heart, .calculator{
     width:100px;
     font-size:14px;
 }
@@ -72,6 +73,7 @@
 .searchContainer{
     display: flex;
     justify-content: center;
+    margin:5vh;
 }
 
 .active {
@@ -89,6 +91,7 @@
 }
 
 .pagination{
+    margin:5vh 0 5vh 0;
     width: 100vw;
     display: flex;
     justify-content: center;;

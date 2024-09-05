@@ -8,7 +8,7 @@ const FavList = () => {
     const {favItems} = useContext(favContext);
 
     return(
-        <div>
+        <div className="favlist">
             {favItems.length !== 0 ? <div> {favItems.map((coin) => (
                 <div className="favcontainer">
                 <div className="favcoin" key={coin.uuid}>
@@ -22,8 +22,8 @@ const FavList = () => {
                 </div>
             </div>
         ))} </div> : <div className="NoFavsContainer"> {<div>
-                <img src={NoFavs} alt="" />
-            <h1>No coins added to favorites</h1>
+                <img src={NoFavs} alt="" className="NoFavs" />
+            <h2 className="NoFavsText">No coins added to favorites</h2>
             </div>} </div>
             }
         </div>
