@@ -5,8 +5,10 @@ import './coins.css'
 import CircularProgress from '@mui/material/CircularProgress';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import SearchIcon from '@mui/icons-material/Search';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import FavItem from './favItem';
+import { Snackbar } from '@mui/material';
 
 const CoinsPage = () => {
     const [coins,setCoins] = useState([])
@@ -34,6 +36,9 @@ const CoinsPage = () => {
       };
 
       useEffect (() => {
+        if(search !== ''){
+            setPage(1);
+        }
         const fetchData = async () => {
             try{
                 const response = await axios.request(options);
@@ -50,9 +55,9 @@ const CoinsPage = () => {
             }
         }
         fetchData()
-      }, [page])
+      }, [page, search])
 
-      const filteredCoins = allCoins.filter((coin) => {
+      const filteredCoins = allCoins.filter((coin) => {               
         return coin.name.toLowerCase().includes(search.toLowerCase()
       )});
 
@@ -75,72 +80,77 @@ const CoinsPage = () => {
     
   return (
     <>
-    <input type='text' value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search for a coin..." className='search-bar'></input>
+    <div className='searchContainer'>
+      <div className='searchBar'>
+        <SearchIcon />
+        <input type='text' value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search for a coin..."></input>
+      </div>
+    </div>
     <div className="attributescontainer">
   <div className="coinattributes">
-    <p className="coinrank">Rank</p>
+    <b className="coinrank"><i>Rank</i></b>
     <p className="coinfiller"></p>
-    <p className="coinname">Name</p>
-    <p className="coinsymbol">Symbol</p>
-    <p className="coinprice">Price</p>
-    <p className="coinvolume">24h Volume</p>
-    <p className="marketcap">Market Cap</p>
+    <b className="coinname"><i>Name</i></b>
+    <b className="coinsymbol"><i>Symbol</i></b>
+    <b className="coinprice"><i>Price</i></b>
+    <b className="coinvolume"><i>24h Volume</i></b>
+    <b className="marketcap"><i>Market Cap</i></b>
     <p className="coinfiller"></p>
     <p className="coinfiller"></p>
     <p className="coinfiller"></p>
   </div>
-  { search === '' ? <div>
+  { search === '' ? <div className='higherContainer'>
    {coins.map((coin) => (
     <div className="coincontainer">
       <div className="coin" key={coin.uuid}>
         <p className="coinrank">{coin.rank}</p>
         <img className="coinimg" src={coin.iconUrl} alt="" />
-        <p className="coinname">{coin.name}</p>
-        <p className="coinsymbol">{coin.symbol}</p>
-        <p className="coinprice">${new Intl.NumberFormat().format(coin.price)}</p>
-        <p className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</p>
-        <p className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</p>
+        <i className="coinname">{coin.name}</i>
+        <b className="coinsymbol">{coin.symbol}</b>
+        <b className="coinprice">${new Intl.NumberFormat().format(coin.price)}</b>
+        <b className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</b>
+        <b className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</b>
         <div className="sparklines">
           <Sparklines data={coin.sparkline.map(Number)}>
             <SparklinesLine color="blue" />
           </Sparklines>
         </div>
         <FavItem className="heart" coin = {coin}/>
-        <CalculateIcon className="calculator" />
+        <CalculateIcon className="calculator" fontSize='large'/>
       </div>
     </div>
-  ))} </div> : <div>
+  ))} </div> : <div className='higherContainer'>
    {pagFilteredCoins.map((coin) => (
     <div className="coincontainer">
       <div className="coin" key={coin.uuid}>
         <p className="coinrank">{coin.rank}</p>
         <img className="coinimg" src={coin.iconUrl} alt="" />
-        <p className="coinname">{coin.name}</p>
-        <p className="coinsymbol">{coin.symbol}</p>
-        <p className="coinprice">${new Intl.NumberFormat().format(coin.price)}</p>
-        <p className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</p>
-        <p className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</p>
+        <i className="coinname">{coin.name}</i>
+        <b className="coinsymbol">{coin.symbol}</b>
+        <b className="coinprice">${new Intl.NumberFormat().format(coin.price)}</b>
+        <b className="coinvolume">${new Intl.NumberFormat().format(coin["24hVolume"])}</b>
+        <b className="marketcap">${new Intl.NumberFormat().format(coin.marketCap)}</b>
         <div className="sparklines">
           <Sparklines data={coin.sparkline.map(Number)}>
             <SparklinesLine color="blue" />
           </Sparklines>
         </div>
-        <FavItem className="heart" coin = {coin}/>
-        <CalculateIcon className="calculator" />
+        <FavItem coin = {coin}/>
+        <CalculateIcon className="calculator" fontSize='large'/>
       </div>
     </div>
   ))} </div>}
   </div>
 
   <div className='pagination'>
-  <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
+  <button onClick={() => setPage(page - 1)} disabled={page === 1} className='near'>{"<"}</button>
   {Array.from({ length: totalPages }, (_, i) => {
           if (i === 0 || i === totalPages - 1) {
             return (
               <button
                 key={i}
                 onClick={() => setPage(i + 1)}
-                className={page === i + 1 ? 'active' : ''}
+                className={page === i + 1 ? 'active' : 'near'}
               >
                 {i + 1}
               </button>
@@ -150,20 +160,20 @@ const CoinsPage = () => {
               <button
                 key={i}
                 onClick={() => setPage(i + 1)}
-                className={page === i + 1 ? 'active' : ''}
+                className={page === i + 1 ? 'active' : 'near'}
               >
                 {i + 1}
               </button>
             );
           } else if (i === page - 3 || i === page + 1) {
             return (
-              <button key={i}>...</button>
+              <button key={i} className="blank">...</button>
             );
           } else {
             return null;
           }
         })}
-   <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>Next</button>
+   <button onClick={() => setPage(page + 1)} disabled={page === totalPages} className='near'>{">"}</button>
   </div>
     </>
   )

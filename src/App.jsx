@@ -1,17 +1,13 @@
-import React from 'react'
-import TopTen from './components/TopTen'
-import FavList from './components/favList'
-import CoinsPage from './components/CoinsPage'
-//import CoinsPage from './components/CoinsPage'
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+
 
 const App = () => {
   return (
     <>
-      {/* <TopTen /> */}
-      <CoinsPage />
-      <FavList />
+    <div className="App"> App </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

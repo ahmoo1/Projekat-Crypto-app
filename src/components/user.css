@@ -1,0 +1,35 @@
+:root{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.userhero{
+    margin-left:2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.userleft{
+    width: 25vw;
+}
+
+.userleft p{
+    margin: 0 0 5px 0;
+}
+
+.userleft a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    margin-top:5vh;
+    color:rgb(0, 145, 255);
+    font-weight:200;
+    font-size:0.85em;
+}
+
+.userleft span{
+    color:red;
+}
