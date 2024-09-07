@@ -11,7 +11,7 @@ const Header = () => {
             <div>
                 <nav className="navbar">
                     <div className="logo-container">
-                    <img src="src/assets/logo.png" alt="CRYPTO-APP" className="logo" />
+                    <img src="./logo.png" alt="CRYPTO-APP" className="logo" />
                     <p className="logo-text">CRYPTO-APP</p>
                     </div>
                         <div className="links">
