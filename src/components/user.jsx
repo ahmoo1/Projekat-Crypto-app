@@ -13,7 +13,7 @@ const User = () => {
       </div>
 
       <div className="userright">
-        <img src="./hero.png" alt="hero" />
+        <img src="user.png" alt="hero" />
       </div>
       
     </div>

@@ -7,9 +7,9 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="flinks">
-                <Link>Website</Link>
-                <Link>Users</Link>
-                <Link>Coins</Link>
+                <Link to="/">Website</Link>
+                <Link to="/users">Users</Link>
+                <Link to="/coins">Coins</Link>
                 <Link>Exchanges</Link>
             </div>
             <div className="text">
