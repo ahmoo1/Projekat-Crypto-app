@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from '../components/header'
-import AboutUs from '../components/aboutus/aboutus'
+import TeamList from '../components/aboutus/teamlist'
 
 const About = () => {
   return (
     <>
     <Header />
-    <AboutUs />
+    <TeamList />
     </>
   )
 }

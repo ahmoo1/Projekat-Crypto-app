@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/App.css'; 
+
+import './aboutus.css';
 
 const TeamMember = ({ name, location, description, github, img }) => {
   return (
