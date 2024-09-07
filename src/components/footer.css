@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+}
+
+.footer{
+    width: 100%;
+    height: 224px;
+    background-color: rgb(191,219,254);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flinks{
+    border: 4px solid black;
+    border-radius: 20px;
+    display: flex;
+    width: 35vw;
+    height: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    gap: 25px;
+    
+}
+.flinks a{
+    text-decoration: none;
+    color: rgb(17,24,39);
+    font-size:  14px;
+    font-weight: bold;
+}
+.text{
+    display: block;
+    align-items: center;
+    text-align: center ;
+    font-size:  12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
