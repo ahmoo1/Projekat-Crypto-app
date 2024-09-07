@@ -1,6 +1,8 @@
 import React from "react";
 import './header.css';
 import { Link } from "react-router-dom";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Header = () => {
@@ -17,8 +19,8 @@ const Header = () => {
                         <Link to="/coins">Coins</Link>
                         <a href="#">Exchanges</a> {/* Treba da bude dodat Exchanges routing poput ostalih linkova*/}
                         <Link to="/aboutus">About Us</Link>
-                        <Link to="/favorites">Favorites</Link>
-                        </div><Link to="/user">Profile</Link>   
+                        <Link to="/favorites"><FavoriteIcon className="favIcon" /></Link>
+                        </div><Link to="/user">< AccountCircleIcon className="userIcon" /></Link>   
                 </nav>
             </div>
         </div>
