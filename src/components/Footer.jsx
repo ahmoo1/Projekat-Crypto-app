@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="footer">
             <div className="flinks">
                 <Link to="/">Website</Link>
-                <Link to="/users">Users</Link>
+                <Link to="/user">Users</Link>
                 <Link to="/coins">Coins</Link>
                 <Link>Exchanges</Link>
             </div>
